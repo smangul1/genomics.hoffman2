@@ -1,0 +1,37 @@
+START
+Sun Aug 19 22:31:18 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+Sun Aug 19 22:31:36 PDT 2018 --- TOTAL RUNTIME: 0:00:00:17.4852
+Sun Aug 19 22:31:36 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Sun Aug 19 22:31:36 PDT 2018 --- TRANSFORMING OUTPUT
+Sun Aug 19 22:31:36 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONESTART
+Sun Aug 19 22:42:24 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+Sun Aug 19 22:43:45 PDT 2018 --- TOTAL RUNTIME: 0:00:01:21.0066
+Sun Aug 19 22:43:45 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Sun Aug 19 22:43:45 PDT 2018 --- TRANSFORMING OUTPUT
+Sun Aug 19 22:43:45 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONESTART
+Sun Aug 19 22:47:14 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+Sun Aug 19 22:47:22 PDT 2018 --- TOTAL RUNTIME: 0:00:00:8.3116
+Sun Aug 19 22:47:22 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Sun Aug 19 22:47:22 PDT 2018 --- TRANSFORMING OUTPUT
+Sun Aug 19 22:47:22 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONESTART
+Sun Aug 19 22:56:55 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+Sun Aug 19 22:57:01 PDT 2018 --- TOTAL RUNTIME: 0:00:00:6.4678
+Sun Aug 19 22:57:01 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Sun Aug 19 22:57:01 PDT 2018 --- TRANSFORMING OUTPUT
+Sun Aug 19 22:57:01 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONESTART
+Sun Aug 19 23:04:44 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+100000 GFF lines processed.

@@ -1,0 +1,40 @@
+START
+Thu Sep 13 08:09:04 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+100000 GFF lines processed.
+200000 GFF lines processed.
+300000 GFF lines processed.
+400000 GFF lines processed.
+500000 GFF lines processed.
+600000 GFF lines processed.
+700000 GFF lines processed.
+800000 GFF lines processed.
+900000 GFF lines processed.
+1000000 GFF lines processed.
+1100000 GFF lines processed.
+1200000 GFF lines processed.
+1300000 GFF lines processed.
+1400000 GFF lines processed.
+1500000 GFF lines processed.
+1600000 GFF lines processed.
+1700000 GFF lines processed.
+1800000 GFF lines processed.
+1900000 GFF lines processed.
+2000000 GFF lines processed.
+2100000 GFF lines processed.
+2200000 GFF lines processed.
+2300000 GFF lines processed.
+2400000 GFF lines processed.
+2500000 GFF lines processed.
+2600000 GFF lines processed.
+2700000 GFF lines processed.
+2720530 GFF lines processed.
+Error occured when reading beginning of SAM/BAM file.
+  file has no sequences defined (mode='rb') - is it SAM/BAM format? Consider opening with check_sq=False
+  [Exception type: ValueError, raised in libcalignmentfile.pyx:983]
+Thu Sep 13 08:13:01 PDT 2018 --- TOTAL RUNTIME: 0:00:03:56.5018
+Thu Sep 13 08:13:01 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Thu Sep 13 08:13:01 PDT 2018 --- TRANSFORMING OUTPUT
+Thu Sep 13 08:13:01 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONE
