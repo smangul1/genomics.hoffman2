@@ -1,0 +1,39 @@
+START
+Sun Sep 16 13:50:24 PDT 2018 --- RUNNING hisat2.tuned
+[M::bam2fq_mainloop] discarded 0 singletons
+[M::bam2fq_mainloop] processed 0 reads
+100000 GFF lines processed.
+200000 GFF lines processed.
+300000 GFF lines processed.
+400000 GFF lines processed.
+500000 GFF lines processed.
+600000 GFF lines processed.
+700000 GFF lines processed.
+800000 GFF lines processed.
+900000 GFF lines processed.
+1000000 GFF lines processed.
+1100000 GFF lines processed.
+1200000 GFF lines processed.
+1300000 GFF lines processed.
+1400000 GFF lines processed.
+1500000 GFF lines processed.
+1600000 GFF lines processed.
+1700000 GFF lines processed.
+1800000 GFF lines processed.
+1900000 GFF lines processed.
+2000000 GFF lines processed.
+2100000 GFF lines processed.
+2200000 GFF lines processed.
+2300000 GFF lines processed.
+2400000 GFF lines processed.
+2500000 GFF lines processed.
+2600000 GFF lines processed.
+2700000 GFF lines processed.
+2720530 GFF lines processed.
+Warning: Mate records missing for 18 records; first such record: <SAM_Alignment object: Paired-end read 'A00454:32:H7GHGDSXX:3:1101:15528:1016' aligned to 11:[5226957,5227055)/+>.
+57 SAM alignment pairs processed.
+Sun Sep 16 13:55:52 PDT 2018 --- TOTAL RUNTIME: 0:00:05:28.3368
+Sun Sep 16 13:55:52 PDT 2018 --- FINISHED RUNNING hisat2.tuned 
+Sun Sep 16 13:55:52 PDT 2018 --- TRANSFORMING OUTPUT
+Sun Sep 16 13:55:52 PDT 2018 --- TRANSFORMING OUTPUT DONE
+DONE

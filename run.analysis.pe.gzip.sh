@@ -9,10 +9,13 @@ AUTHOR="Serghei Mangul"
 ################################################################
 
 toolName="hisat2.tuned"
-toolPath="/u/home/h/harryyan/project-eeskin/utilities/hisat2-2.1.0/hisat2"
 index="/u/home/h/harryyan/project-eeskin/utilities/hisat2-2.1.0/ref_genome/grch38/genome"
-samtools=/u/home/s/serghei/project/code/seeing.beyond.target/tools/MiniConda/bin/samtools
 gtf=/u/home/s/serghei/project/Homo_sapiens/Ensembl/Homo_sapiens.GRCh38.79.gtf
+
+samtools=/u/home/s/serghei/project/anaconda2/bin/samtools
+toolPath=/u/home/s/serghei/project/anaconda2/bin/hisat2
+
+
 
 
 
@@ -79,10 +82,25 @@ input2_fastq=$(echo $input2 | awk -F ".gz" '{print $1}')
 zcat $input1 >$input1_fastq
 zcat $input2 >$input2_fastq
 
+echo "FASTQ files are ready"
+ls -l $input1_fastq
+ls -l $input2_fastq
+
+echo "Saving mapped reads to ", $outdir/${toolName}_$(basename ${input1%.*}).bam
+
 
 $toolPath -x $index -1 $input1_fastq -2 $input2_fastq --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
+
+echo "hisat2 is done. Reads were saved to $outdir/${toolName}_$(basename ${input1%.*}).bam"
+ls -l $outdir/${toolName}_$(basename ${input1%.*}).bam
+
 $samtools view -f 0x4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools fastq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
+
+ls -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq
+
+
 htseq=/u/home/s/serghei/project/code/seeing.beyond.target/tools/MiniConda/bin/htseq-count
+
 
 n=$(wc -l $input1_fastq  | awk '{print $1/2}')
 nu=$(wc -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq | awk '{print $1/4}')
@@ -90,6 +108,8 @@ nu=$(wc -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq | awk '{p
 
 rm -fr $input1_fastq
 rm -fr $input2_fastq
+
+echo "$input1,$n,$nu"
 
 echo "$input1,$n,$nu">$outdir/${toolName}_summary.mapped.csv
 
