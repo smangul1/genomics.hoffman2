@@ -89,17 +89,22 @@ ls -l $input2_fastq
 echo "Saving mapped reads to ", $outdir/${toolName}_$(basename ${input1%.*}).bam
 
 
-$toolPath -x $index -1 $input1_fastq -2 $input2_fastq --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
+$toolPath -x $index -1 $input1_fastq -2 $input2_fastq --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - | $samtools sort - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
+
+$samtools index $outdir/${toolName}_$(basename ${input1%.*}).bam 
 
 echo "hisat2 is done. Reads were saved to $outdir/${toolName}_$(basename ${input1%.*}).bam"
 ls -l $outdir/${toolName}_$(basename ${input1%.*}).bam
 
-$samtools view -f 0x4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools fastq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
+
+
+$samtools view -f4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools fastq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
 
 ls -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq
 
 
-htseq=/u/home/s/serghei/project/code/seeing.beyond.target/tools/MiniConda/bin/htseq-count
+htseq=/u/home/s/serghei/project/anaconda2/bin/htseq-count
+
 
 
 n=$(wc -l $input1_fastq  | awk '{print $1/2}')
@@ -125,6 +130,7 @@ $htseq --format bam --order pos --mode=intersection-strict --stranded=no $outdir
 
 
 #hisat2 --threads 16 --end-to-end -N <NUM_MISMATCH> -L <SEED_LENGTH> -i S,1,<SEED_INTERVAL> -D <SEED_EXTENSION> -R <RE_SEED> --pen-noncansplice <PENALITY_NONCANONICAL> --mp <MAX_MISMATCH_PENALITY>,<MIN_MISMATCH_PENALITY> --sp <MAX_SOFTCLIPPING_PENALITY>,<MIN_SOFTCLIPPING_PENALITY>--time --reorder --known-splicesite-infile <output index path>/<genome name>.splicesites.txt --novel-splicesite-outfile splicesites.novel.txt --novel-splicesite-infile splicesites.novel.txt -f -x <index name> -1 <read file 1> -2 <read file 2> -S <output sam file>
+
 # default 1 20 0.5 25 5 12 1 0 3 0
 
 
