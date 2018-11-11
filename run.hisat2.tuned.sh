@@ -10,7 +10,6 @@ AUTHOR="Serghei Mangul"
 
 toolName="hisat2.tuned"
 index="/u/home/h/harryyan/project-eeskin/utilities/hisat2-2.1.0/ref_genome/grch38/genome"
-gtf=/u/home/s/serghei/project/Homo_sapiens/Ensembl/Homo_sapiens.GRCh38.79.gtf
 
 samtools=/u/home/s/serghei/project/anaconda2/bin/samtools
 toolPath=/u/home/s/serghei/project/anaconda2/bin/hisat2
@@ -19,11 +18,10 @@ toolPath=/u/home/s/serghei/project/anaconda2/bin/hisat2
 
 
 
-
-
-if [ $# -lt 2 ]
+if [ $# -lt 3 ]
     then
     echo "********************************************************************"
+    echo "Script was written for project : Comprehensive analysis of RNA-sequencing to find the source of 1 trillion reads across diverse adult human tissues"
     echo "This script was written by Serghei Mangul"
     echo "********************************************************************"
     echo ""
@@ -72,69 +70,25 @@ printf "%s --- RUNNING %s\n" "$now" $toolName >> $logfile
 res1=$(date +%s.%N)
 
 
+. /u/local/Modules/default/init/modules.sh
+module load samtools
+
+$toolPath -x $index -1 $input1 -2 $input2 --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
+
+$samtools view -f 4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools bam2fq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
 
 
 
 
-input1_fastq=$(echo $input1 | awk -F ".gz" '{print $1}')
-input2_fastq=$(echo $input2 | awk -F ".gz" '{print $1}')
+/u/home/s/serghei/project/anaconda2/bin/python ~/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py ${toolName}_$(basename ${input1%.*}).bam ${toolName}_$(basename ${input1%.*}).NR_PE.txt
 
-zcat $input1 >$input1_fastq
-zcat $input2 >$input2_fastq
+$samtools sort $outdir/${toolName}_$(basename ${input1%.*}).bam >$outdir/${toolName}_$(basename ${input1%.*}).sort.bam
 
-echo "FASTQ files are ready"
-ls -l $input1_fastq
-ls -l $input2_fastq
-
-echo "Saving mapped reads to ", $outdir/${toolName}_$(basename ${input1%.*}).bam
-
-echo "$toolPath -x $index -1 $input1_fastq -2 $input2_fastq --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - | $samtools sort - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile"
-
-exit 1
-
-
-$toolPath -x $index -1 $input1_fastq -2 $input2_fastq --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - | $samtools sort - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
-
-$samtools index $outdir/${toolName}_$(basename ${input1%.*}).bam 
-
-echo "hisat2 is done. Reads were saved to $outdir/${toolName}_$(basename ${input1%.*}).bam"
-ls -l $outdir/${toolName}_$(basename ${input1%.*}).bam
-
-
-
-$samtools view -f4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools fastq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
-
-ls -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq
-
-
-htseq=/u/home/s/serghei/project/anaconda2/bin/htseq-count
-
-
-
-n=$(wc -l $input1_fastq  | awk '{print $1/2}')
-nu=$(wc -l $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq | awk '{print $1/4}')
-
-
-rm -fr $input1_fastq
-rm -fr $input2_fastq
-
-echo "$input1,$n,$nu"
-
-echo "$input1,$n,$nu">$outdir/${toolName}_summary.mapped.csv
-
-
-
-echo "$htseq --format bam --order pos --mode=intersection-strict --stranded=no $outdir/${toolName}_$(basename ${input1%.*}).bam $gtf >$outdir/${toolName}_$(basename ${input1%.*}).counts 2>>$logfile"
-
-
-
-$htseq --format bam --order pos --mode=intersection-strict --stranded=no $outdir/${toolName}_$(basename ${input1%.*}).bam $gtf >$outdir/${toolName}_$(basename ${input1%.*}).counts 2>>$logfile
 
 
 
 
 #hisat2 --threads 16 --end-to-end -N <NUM_MISMATCH> -L <SEED_LENGTH> -i S,1,<SEED_INTERVAL> -D <SEED_EXTENSION> -R <RE_SEED> --pen-noncansplice <PENALITY_NONCANONICAL> --mp <MAX_MISMATCH_PENALITY>,<MIN_MISMATCH_PENALITY> --sp <MAX_SOFTCLIPPING_PENALITY>,<MIN_SOFTCLIPPING_PENALITY>--time --reorder --known-splicesite-infile <output index path>/<genome name>.splicesites.txt --novel-splicesite-outfile splicesites.novel.txt --novel-splicesite-infile splicesites.novel.txt -f -x <index name> -1 <read file 1> -2 <read file 2> -S <output sam file>
-
 # default 1 20 0.5 25 5 12 1 0 3 0
 
 
@@ -177,6 +131,6 @@ printf "%s --- TRANSFORMING OUTPUT DONE\n" "$now" >> $logfile
 
 # --------------------------------------
 
-echo "done">done.txt
+
 
 printf "DONE" >> $logfile
