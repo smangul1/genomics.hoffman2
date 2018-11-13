@@ -80,7 +80,7 @@ $samtools view -f 4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samt
 
 
 
-/u/home/s/serghei/project/anaconda2/bin/python ~/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py ${toolName}_$(basename ${input1%.*}).bam ${toolName}_$(basename ${input1%.*}).NR_PE.txt
+/u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py ${toolName}_$(basename ${input1%.*}).bam ${toolName}_$(basename ${input1%.*}).NR_PE.txt
 
 $samtools sort $outdir/${toolName}_$(basename ${input1%.*}).bam >$outdir/${toolName}_$(basename ${input1%.*}).sort.bam
 
