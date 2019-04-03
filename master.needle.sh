@@ -1,10 +1,10 @@
-ls *_R1_001.fastq_unmapped.fastq | awk -F "_R1_001.fastq_unmapped.fastq" '{print $1}' >samples.txt
+ls *.fastq | awk -F ".fastq$" '{print $1}' >samples.txt
 
 
 while read line
 do
 
-echo "~/project/code/needle/needle.sh -fastq $PWD/${line}_R1_001.fastq_unmapped.fastq $PWD/${line}">run.${line}.sh
-qsub -cwd -V -N salmon -l h_data=16G,highp,time=24:00:00 run.${line}.sh
+echo "/u/home/s/serghei/project/code/needle/needle.sh -fastq $PWD/${line}.fastq $PWD/${line}">run.${line}.sh
+qsub -cwd -V -N needle -l h_data=16G,highp,time=24:00:00 run.${line}.sh
 
 done<samples.txt
