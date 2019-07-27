@@ -84,7 +84,7 @@ $samtools view -f 4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samt
 
 $samtools sort $outdir/${toolName}_$(basename ${input1%.*}).bam >$outdir/${toolName}_$(basename ${input1%.*}).sort.bam
 
-
+$samtools index $outdir/${toolName}_$(basename ${input1%.*}).sort.bam 
 
 
 
@@ -127,6 +127,8 @@ printf "%s --- TRANSFORMING OUTPUT DONE\n" "$now" >> $logfile
 
 # remove intermediate files
 #rm $outdir/one_output_file.fastq
+
+rm -fr ${toolName}_$(basename ${input1%.*}).bam
 
 
 # --------------------------------------
