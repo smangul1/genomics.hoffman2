@@ -1,4 +1,4 @@
-ls *bam | awk -F "bam" '{print $1}' >samples.txt
+ls *.bam | awk -F ".bam" '{print $1}' >samples.txt
 
 
 while read line
