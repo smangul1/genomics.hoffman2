@@ -6,6 +6,10 @@ do
 
 echo "/u/home/s/serghei/code/genomics.hoffman2/run.leafcutter.bam2junc.sh ${line}.bam ${line}.junc" >run.${line}.sh
 
-qsub -cwd -V -N leafcutter -l h_data=8G,highp,time=04:00:00 run.${line}.sh
+#qsub -cwd -V -N leafcutter -l h_data=8G,highp,time=24:00:00 run.${line}.sh
 
 done<samples.txt
+
+~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24 
+
+
