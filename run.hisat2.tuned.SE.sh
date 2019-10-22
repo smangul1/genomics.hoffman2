@@ -18,7 +18,7 @@ toolPath=/u/home/s/serghei/project/anaconda2/bin/hisat2
 
 
 
-if [ $# -lt 3 ]
+if [ $# -lt 2 ]
     then
     echo "********************************************************************"
     echo "Script was written for project : Comprehensive analysis of RNA-sequencing to find the source of 1 trillion reads across diverse adult human tissues"
@@ -37,6 +37,8 @@ if [ $# -lt 3 ]
 input1=$1
 outdir=$2
 
+echo "$input1"
+echo "$outdir"
 
 
 # STEP 0 - create output directory if it does not exist
@@ -59,6 +61,8 @@ echo "START" >> $logfile
 # -----------------------------------
 
 
+
+
 # STEP 2 - run the tool (ATTENTION: TOOL SPECIFIC PART!)
 
 now="$(date)"
@@ -70,6 +74,9 @@ res1=$(date +%s.%N)
 
 . /u/local/Modules/default/init/modules.sh
 module load samtools
+
+
+echo "$toolPath -x $index -U $input1 --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile"
 
 $toolPath -x $index -U $input1 --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
 
