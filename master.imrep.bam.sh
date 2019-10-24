@@ -1,3 +1,6 @@
+. /u/local/Modules/default/init/modules.sh
+module load python/2.7
+#above line is necessary to avoid compile vs runtime error of different python versions since serghei's python is version 2.7 and default hoffman is 2.6
 
 ls *bam | awk -F ".bam" '{print $1}' >samples.txt
 
