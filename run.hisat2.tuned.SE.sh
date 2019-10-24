@@ -92,10 +92,12 @@ $samtools sort $outdir/${toolName}_$(basename ${input1%.*}).bam >$outdir/${toolN
 $samtools index $outdir/${toolName}_$(basename ${input1%.*}).sort.bam 
 
 
+rm $outdir/${toolName}_$(basename ${input1%.*}).bam
+rm $outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq
+
 
 #hisat2 --threads 16 --end-to-end -N <NUM_MISMATCH> -L <SEED_LENGTH> -i S,1,<SEED_INTERVAL> -D <SEED_EXTENSION> -R <RE_SEED> --pen-noncansplice <PENALITY_NONCANONICAL> --mp <MAX_MISMATCH_PENALITY>,<MIN_MISMATCH_PENALITY> --sp <MAX_SOFTCLIPPING_PENALITY>,<MIN_SOFTCLIPPING_PENALITY>--time --reorder --known-splicesite-infile <output index path>/<genome name>.splicesites.txt --novel-splicesite-outfile splicesites.novel.txt --novel-splicesite-infile splicesites.novel.txt -f -x <index name> -1 <read file 1> -2 <read file 2> -S <output sam file>
 # default 1 20 0.5 25 5 12 1 0 3 0
-
 
 
 res2=$(date +%s.%N)

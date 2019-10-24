@@ -1,3 +1,5 @@
+. /u/local/Modules/default/init/modules.sh
+module load python/2.7
 
 ls *_R1_001.fastq_unmapped.fastq | awk -F "_R1_001.fastq_unmapped.fastq" '{print $1}' >samples.txt
 
