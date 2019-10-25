@@ -80,31 +80,36 @@ echo "$outdir/${toolName}_$(basename ${input1%.*})_"
 
 $toolPath --genomeDir $index --readFilesIn $input1 $input2 --twopassMode Basic --outSAMstrandField intronMotif --readFilesCommand zcat --outSAMtype BAM Unsorted --outFileNamePrefix  $outdir/${toolName}_$(basename ${input1%.*})_ >> $logfile 2>>$logfile
 
+$samtools view -f 4 -bh $outdir/${toolName}_$(basename ${input1%.*})_Aligned.out.bam | $samtools bam2fq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
 
 # Hisat 
 # $toolPath -x $index -1 $input1 -2 $input2 --end-to-end -N 1 -L 20 -i S,1,0.5 -D 25 -R 5 --pen-noncansplice 12 --mp 1,0 --sp 3,0 --time --reorder | $samtools view -bS - >$outdir/${toolName}_$(basename ${input1%.*}).bam 2>>$logfile
-
 
 # Hisat samtools
 # $samtools view -f 4 -bh $outdir/${toolName}_$(basename ${input1%.*}).bam | $samtools bam2fq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq 2>>$logfile
 # /u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py ${toolName}_$(basename ${input1%.*}).bam ${toolName}_$(basename ${input1%.*}).NR_PE.txt
 # $samtools sort $outdir/${toolName}_$(basename ${input1%.*}).bam >$outdir/${toolName}_$(basename ${input1%.*}).sort.bam
-# $samtools index $outdir/${toolName}_$(basename ${input1%.*}).sort.bam 
+# $samtools index $outdir/${toolName}_$(basename ${input1%.*}).sort.bam
+
+
+##########
+# ASk serghei about below line. Is there a reason that you dont use $outdir/ or is it intentional for this python script to not run?
+# Same mistake made in run.hisat.tuned.sh
+# /u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py $outdir/${toolName}_$(basename ${input1%.*})_Aligned.out.bam $outdir/${toolName}_$(basename ${input1%.*}).NR_PE.txt
+##########
+/u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/code/miscellaneous.scripts/number.unique.reads.bam/number.reads.bam.py ${toolName}_$(basename ${input1%.*})_Aligned.out.bam ${toolName}_$(basename ${input1%.*}).NR_PE.txt
+
+$samtools sort $outdir/${toolName}_$(basename ${input1%.*})_Aligned.out.bam >$outdir/${toolName}_$(basename ${input1%.*})_Aligned.sort.bam
+
+$samtools index $outdir/${toolName}_$(basename ${input1%.*})_Aligned.sort.bam
 
 
 
 # old star
 # $toolPath --genomeDir $index --readFilesIn $input1  $input2 --outSAMunmapped Within --outSAMtype BAM Unsorted --outFileNamePrefix  $outdir/${toolName}_$(basename ${input1%.*})_ >> $logfile 2>>$logfile
 
-
 # old star samtools
 # samtools view -f 0x4 -bh $outdir/${toolName}_$(basename ${input1%.*})_Aligned.out.bam | samtools bam2fq - >$outdir/${toolName}_$(basename ${input1%.*})_unmapped.fastq  2>>$logfile
-
-
-
-
-
-
 
 res2=$(date +%s.%N)
 dt=$(echo "$res2 - $res1" | bc)
@@ -123,15 +128,11 @@ printf "%s --- FINISHED RUNNING %s %s\n" "$now" $toolName >> $logfile
 # ---------------------
 
 
-
-
 # STEP 3 - transform output if necessary (ATTENTION: TOOL SPECIFIC PART!)
-
 
 
 now="$(date)"
 printf "%s --- TRANSFORMING OUTPUT\n" "$now" >> $logfile
-
 
 #cat $outdir/one_output_file.fastq | gzip > $outdir/${toolName}_$(basename ${input%.*})_${kmer}.corrected.fastq.gz
 
