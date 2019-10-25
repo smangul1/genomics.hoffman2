@@ -1,4 +1,4 @@
-ls *_R1_001.fastq.gz | awk -F "_R1_001.fastq.gz" '{print $1}'>samples.txt
+ls *_R*_001.fastq.gz | awk -F "_R1_001.fastq.gz" '{print $1}'>samples.txt
 
  
 
