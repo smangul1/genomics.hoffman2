@@ -1,5 +1,7 @@
-ls *_R1_001.fastq.gz | awk -F "_R1_001.fastq.gz" '{print $1}'>samples.txt
+. /u/local/Modules/default/init/modules.sh
+module load python/2.7
 
+ls *_R1_001.fastq.gz | awk -F "_R1_001.fastq.gz" '{print $1}'>samples.txt
 
 
 while read line
