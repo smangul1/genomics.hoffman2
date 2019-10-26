@@ -1,3 +1,6 @@
+. /u/local/Modules/default/init/modules.sh
+module load python/2.7
+
 ls *_R2_001.fastq.gz | awk -F "_R2_001.fastq.gz" '{print $1}'>samples.txt
 
  
