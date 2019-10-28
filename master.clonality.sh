@@ -7,8 +7,9 @@ ls *cdr3 | awk -F ".cdr3" '{print $1}' >samples.txt
 while read line
 do
 
-echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/project/code/seeing.beyond.target/tools/imrep/clonality.py ${line}.cdr3 ${line}.clonality" >run.${line}.sh
+echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/m/maxmellb/imrep_USC_fork/imrep/clonality.py ${line}.cdr3 ${line}.clonality" >run.${line}.sh
 
 qsub -cwd -V -N clonality -l h_data=16G,highp,time=24:00:00 run.${line}.sh
 
 done<samples.txt
+
