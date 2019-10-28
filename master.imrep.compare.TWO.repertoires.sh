@@ -24,7 +24,7 @@ input2=$2
 
 
 
-echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/m/maxmellb/imrep_USC_fork/imrep/compare.repertoires.py $PWD/${input1} $PWD/${input2} ../imrep.pairwise.comparison/${input1}_vs_{input2}/" > run.compare.two.repertoires.sh
+echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/m/maxmellb/imrep_USC_fork/imrep/compare.repertoires.py $PWD/${input1} $PWD/${input2} ../imrep.pairwise.comparison/${input1}_vs_${input2}/" > run.compare.two.repertoires.sh
 qsub -cwd -V -N compare_two_repertoires -l h_data=16G,highp,time=24:00:00 run.compare.two.repertoires.sh
 
 
