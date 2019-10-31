@@ -22,4 +22,4 @@ qsub -cwd -V -N mixcr -l h_data=16G,highp,time=24:00:00 run.mixcr.rna_seq.${line
 done<samples.txt
 
 
-java -jar /u/home/a/akarlsbe/mixcr-3.0.10/mixcr.jar align -p rna-seq -s hsa -OallowPartialAlignments=true CMT-baseline1C_CAGATC_combinedLanes_R1_001.fastq.gz CMT-baseline1C_CAGATC_combinedLanes_R2_001.fastq.gz CMT-baseline1C_CAGATC_combinedLanes_alignments.vdjca
+# java -jar /u/home/a/akarlsbe/mixcr-3.0.10/mixcr.jar align -p rna-seq -s hsa -OallowPartialAlignments=true CMT-baseline1C_CAGATC_combinedLanes_R1_001.fastq.gz CMT-baseline1C_CAGATC_combinedLanes_R2_001.fastq.gz CMT-baseline1C_CAGATC_combinedLanes_alignments.vdjca
