@@ -10,4 +10,4 @@ echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/project/c
 
 done<samples.txt
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24

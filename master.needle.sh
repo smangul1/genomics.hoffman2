@@ -9,4 +9,4 @@ echo "/u/home/s/serghei/project/code/needle/needle.sh -fastq $PWD/${line}.fastq 
 
 done<samples.txt
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24

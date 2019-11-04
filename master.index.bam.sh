@@ -8,4 +8,4 @@ echo "$samtools index ${line}.bam">run.${line}.sh
 #qsub -cwd -V -N index_${line} -l h_data=12G,highp,time=3:00:00 run.${line}.sh
 done<samples.txt
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  10 3
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  10 3

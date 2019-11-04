@@ -10,6 +10,6 @@ echo "/u/home/s/serghei/code/genomics.hoffman2/run.leafcutter.bam2junc.sh ${line
 
 done<samples.txt
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24 
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24 
 
 

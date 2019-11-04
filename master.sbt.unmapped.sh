@@ -16,5 +16,5 @@ done<samples.txt
 
 
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  8 5
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  8 5
 

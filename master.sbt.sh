@@ -11,5 +11,5 @@ echo "/u/home/s/serghei/code/sbt_tool/sbt.sh $PWD/${line}.bam $PWD/${line}_sbt/"
 done<samples.txt
 
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
 
