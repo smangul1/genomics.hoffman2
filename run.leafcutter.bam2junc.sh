@@ -12,7 +12,7 @@ if [ $# -lt 2 ]
     fi
 
 
-tool='/u/home/s/serghei//code/import/leafcutter/scripts/bam2junc.sh' # channge it if location where leafcutter is installed is different 
+tool='/u/home/s/serghei/code/import/leafcutter/scripts/bam2junc.sh' # channge it if location where leafcutter is installed is different 
 
 
 bam=$1
