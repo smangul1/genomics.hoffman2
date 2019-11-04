@@ -1,3 +1,6 @@
+. /u/local/Modules/default/init/modules.sh
+module load samtools
+
 ls *.bam | awk -F ".bam" '{print $1}' >samples.txt
 
 
