@@ -1,4 +1,4 @@
-ls *fastq | awk -F "sort_extended_unmapped.fastq" '{print $1}' >samples.txt
+ls *fastq | awk -F ".sort_extended_unmapped.fastq" '{print $1}' >samples.txt
 
 while read line
 do
