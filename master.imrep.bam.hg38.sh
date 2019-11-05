@@ -2,15 +2,19 @@
 module load python/2.7
 #above line is necessary to avoid compile vs runtime error of different python versions since serghei's python is version 2.7 and default hoffman is 2.6
 
+
+
 ls *bam | awk -F ".bam" '{print $1}' >samples.txt
 
 while read line
 do
+
+# for star.leafcutter prepped bams, use option: --chrFormat2 
 
 echo "/u/home/s/serghei/project/anaconda2/bin/python /u/home/s/serghei/project/code/seeing.beyond.target/tools/imrep/imrep.py --hg38 --bam  --noOverlapStep --noCast ${line}.bam ${line}.cdr3" >run.${line}.sh
 
 
 done<samples.txt
 
-~/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
+/u/home/s/serghei/code/miscellaneous.scripts/submit_QSUB_array.sh  16 24
 
