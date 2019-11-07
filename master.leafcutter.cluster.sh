@@ -1,6 +1,7 @@
 ls *junc >junc_files.txt
 
-tool=~/code/import/leafcutter/clustering/leafcutter_cluster.py
+tool=/u/home/s/serghei/code/import/leafcutter/clustering/leafcutter_cluster.py
+
 
 
 echo "python $tool -j junc_files.txt -m 50 -o leafcutter_cluster -l 500000">run_leafcutter_cluster.sh
