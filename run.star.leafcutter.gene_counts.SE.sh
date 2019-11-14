@@ -18,7 +18,7 @@ toolPath="/u/home/h/harryyan/project-eeskin/fusion/tools/STAR/STAR"
 
 
 
-if [ $# -lt 3 ]
+if [ $# -lt 2 ]
     then
     echo "********************************************************************"
     echo "Script was written for project : Comprehensive analysis of RNA-sequencing to find the source of 1 trillion reads across diverse adult human tissues"
@@ -26,7 +26,7 @@ if [ $# -lt 3 ]
     echo "********************************************************************"
     echo ""
     echo "1 <input1>   - R1.fastq"
-    echo "3 <outdir>  - dir to save the output"
+    echo "2 <outdir>  - dir to save the output"
     echo "--------------------------------------"
     exit 1
     fi
@@ -35,7 +35,7 @@ if [ $# -lt 3 ]
 
 # mandatory part
 input1=$1
-outdir=$3
+outdir=$2
 
 
 
