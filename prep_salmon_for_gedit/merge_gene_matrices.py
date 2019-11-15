@@ -17,7 +17,7 @@ df_merged = reduce(lambda  left,right: pd.merge(left,right,on=['gene_name'],
 
 # print(df_merged.head(10))
 
-filename = "merged_gene_matrix.csv"
+filename = "gene_matrices/merged_gene_matrix.csv"
 df_merged.to_csv(filename, index = False)
 
 print("\ndone\n")

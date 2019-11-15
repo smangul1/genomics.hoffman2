@@ -8,7 +8,7 @@ mkdir gene_matrices
 while read line
 do
 
-echo "python salmon_to_gene_matrix.py ${line}/quant.sf ${line}" >run.generate.gene.matrix.${line}.sh
+echo "python generate_gene_matrix.py ${line}/quant.sf ${line}" >run.generate.gene.matrix.${line}.sh
 
 chmod u+x run.generate.gene.matrix.${line}.sh
 

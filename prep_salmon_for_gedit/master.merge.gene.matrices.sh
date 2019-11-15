@@ -1,7 +1,7 @@
 . /u/local/Modules/default/init/modules.sh
 module load python/anaconda3
 
-ls *gene_matrix.csv >samples.txt
+ls gene_matrices/*gene_matrix.csv >samples.txt
 
 var=$(cat samples.txt | tr '\n' ' ' )
 echo "python merge_gene_matrices.py ${var}" >run.merge.sh
