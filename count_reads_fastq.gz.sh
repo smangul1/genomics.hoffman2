@@ -12,7 +12,7 @@ line_count=$(zcat ${line}.fastq.gz | wc -l)
 Num_Reads=$(((line_count + 1)/4))
 
 
-combined="$file_name,$Num_Reads"
+combined="$file_name$Num_Reads"
 echo "$combined" >> num_reads.csv
 
 done<samples.txt
@@ -20,4 +20,4 @@ done<samples.txt
 echo "done"
 
 
-# qsub -cwd -V -N count_lines -l h_data=12G,highp,time=6:00:00 count_lines.sh
+# qsub -cwd -V -N count_reads -l h_data=12G,highp,time=30:00:00 count_reads_fastq.gz.sh

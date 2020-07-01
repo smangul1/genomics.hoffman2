@@ -11,7 +11,7 @@ file_name="${line}.fastq.gz,"
 line_count=$(zcat ${line}.fastq.gz | wc -l) 
 
 
-combined="$file_name,$line_count"
+combined="$file_name$line_count"
 echo "$combined" >> line_counts.csv
 
 done<samples.txt
